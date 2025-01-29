@@ -23,7 +23,7 @@ const UserConnect = ({ setGlobalSocket }) => {
 
     setLoading(true); // 연결 중 UI 표시
 
-    const socketInstance = io("http://localhost:3000", {
+    const socketInstance = io(import.meta.env.VITE_SERVER_URL, {
       autoConnect: false,
       query: { username: username },
     });
@@ -34,12 +34,6 @@ const UserConnect = ({ setGlobalSocket }) => {
       console.log("소켓 연결 완료");
       localStorage.setItem("username", username); // 닉네임 저장
       setGlobalSocket(socketInstance); // 글로벌 소켓 설정
-
-    //   // 기존 메시지 불러오기 이벤트 리스너 추가
-    //   socketInstance.on("load_messages", (previousMessages) => {
-    //     console.log("🔄 기존 메시지 로드됨:", previousMessages);
-    //     setMessages(previousMessages);  // 기존 메시지 업데이트
-    //   });
 
       navigate("/chat"); // 채팅 화면으로 이동
     });
