@@ -1,6 +1,6 @@
 const ChatInput = ({ userInput, setUserInput, sendMessage }) => {
     
-  const handleEnter = (e) => {
+    const handleEnter = (e) => {
       if(e.key == "Enter" && !e.shiftKey) {
         e.preventDefault();
         sendMessage();
